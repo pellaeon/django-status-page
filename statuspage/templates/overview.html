@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Status Page</title>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.5/semantic.css">
+</head>
+<body>
+	<main class="ui page grid">
+	<div class="row">
+		<div class="centered align column">
+		<h1 class="ui header">Status Page</h1>
+		<div class="ui segments">
+			{% for s in services %}
+			<div class="ui segment">
+				<p class="ui left aligned">{{ s.name }}</p>
+				<ul class="ui list right aligned">
+					{% for m in s.monitors.all %}
+					<li>{{ m.name }} : {{ m.status }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+			{% endfor %}
+		</div>
+		</div>
+	</div>
+	</main>
+</body>
+</html>
