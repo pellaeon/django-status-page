@@ -1,23 +1,53 @@
-<html>
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <title>Status Page</title>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.5/semantic.css">
+<link rel="stylesheet" type="text/css" href="{% static "statuspage/style.css" %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/components/visibility.js"></script>
+<script src="{% static "statuspage/actions.js" %}"></script>
 </head>
 <body>
 	<main class="ui page grid">
 	<div class="row">
 		<div class="centered align column">
-		<h1 class="ui header">Status Page</h1>
-		<div class="ui segments">
+			<h1 class="ui header"><i class="icon plug"></i><div class="content">服務狀態</div></h1>
+		<div class="ui segments" id="status">
 			{% for s in services %}
-			<div class="ui segment">
-				<p class="ui left aligned">{{ s.name }}</p>
-				<ul class="ui list right aligned">
-					{% for m in s.monitors.all %}
-					<li>{{ m.name }} : {{ m.status }}</li>
-					{% endfor %}
-				</ul>
+			{% if s.status == 'U' %}
+			<div class="ui segment clearing green">
+				<span class="ui left floated"><i class="icon angle down"></i>{{ s.name }}</span>
+				<span class="ui right floated"><i class="icon circle green"></i>正常</span>
+			{% elif s.status == 'D' %}
+			<div class="ui segment clearing inverted red">
+				<span class="ui left floated"><i class="icon angle down"></i>{{ s.name }}</span>
+				<span class="ui right floated"><i class="icon circle thin white"></i>中斷</span>
+			{% elif s.status == 'P' %}
+			<div class="ui segment clearing inverted yellow">
+				<span class="ui left floated"><i class="icon angle down"></i>{{ s.name }}</span>
+				<span class="ui right floated"><i class="icon circle thin white"></i>部分中斷</span>
+			{% else %}
+			<div class="ui segment clearing yellow">
+				<span class="ui left floated"><i class="icon angle down"></i>{{ s.name }}</span>
+				<span class="ui right floated"><i class="icon circle yellow"></i>維護中</span>
+			{% endif %}
 			</div>
+			{% for m in s.monitors.all %}
+			<div class="ui secondary segment clearing hidden transition">
+				<span class="ui left floated"><i class="icon list layout"></i>{{ m.name }}</span>
+				{% if m.status == 'U' %}
+				<span class="ui right floated"><i class="icon circle green"></i>正常</span>
+				{% elif m.status == 'D' %}
+				<span class="ui right floated"><i class="icon circle red"></i>中斷</span>
+				{% elif s.status == 'P' %}
+				<span class="ui right floated"><i class="icon circle yellow"></i>部分中斷</span>
+				{% else %}
+				<span class="ui right floated"><i class="icon circle blue"></i>維護中</span>
+				{% endif %}
+			</div>
+			{% endfor %}
 			{% endfor %}
 		</div>
 		</div>

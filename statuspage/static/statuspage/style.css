@@ -1,0 +1,28 @@
+span.left.floated {
+	float: left;
+}
+
+span.right.floated {
+	float: right;
+	width: 6em;
+}
+
+.ui.segments:not(.horizontal) > .green.segment:first-child {
+	border-top: 2px solid #21BA45;
+}
+
+.ui.segments:not(.horizontal) > .yellow.segment:first-child {
+	border-top: 2px solid #FBBD08;
+}
+
+.ui.segments:not(.horizontal) > .red.segment:first-child {
+	border-top: 2px solid #DB2828;
+}
+
+main.ui.grid {
+	padding: 14px 0;
+}
+
+.hidden {
+	display: none;
+}
