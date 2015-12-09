@@ -26,3 +26,7 @@ main.ui.grid {
 .hidden {
 	display: none;
 }
+
+.nonsecondary {
+	/* selector used to stop nextUntil() */
+}

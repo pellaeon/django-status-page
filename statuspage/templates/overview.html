@@ -17,19 +17,19 @@
 		<div class="ui segments" id="status">
 			{% for s in services %}
 			{% if s.status == 'U' %}
-			<div class="ui segment clearing green">
+			<div class="ui segment clearing nonsecondary green">
 				<span class="ui left floated"><i class="icon angle down"></i>{{ s.name }}</span>
 				<span class="ui right floated"><i class="icon circle green"></i>正常</span>
 			{% elif s.status == 'D' %}
-			<div class="ui segment clearing inverted red">
+			<div class="ui segment clearing nonsecondary inverted red">
 				<span class="ui left floated"><i class="icon angle down"></i>{{ s.name }}</span>
 				<span class="ui right floated"><i class="icon circle thin white"></i>中斷</span>
 			{% elif s.status == 'P' %}
-			<div class="ui segment clearing inverted yellow">
+			<div class="ui segment clearing nonsecondary inverted yellow">
 				<span class="ui left floated"><i class="icon angle down"></i>{{ s.name }}</span>
 				<span class="ui right floated"><i class="icon circle thin white"></i>部分中斷</span>
 			{% else %}
-			<div class="ui segment clearing yellow">
+			<div class="ui segment clearing nonsecondary yellow">
 				<span class="ui left floated"><i class="icon angle down"></i>{{ s.name }}</span>
 				<span class="ui right floated"><i class="icon circle yellow"></i>維護中</span>
 			{% endif %}
