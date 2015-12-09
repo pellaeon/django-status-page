@@ -21,5 +21,5 @@ from statuspage import urls as statuspage_urls
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.index, name='index'),
-    url(r'^api/$', include(statuspage_urls))
+    url(r'^api/', include(statuspage_urls))
 ]
