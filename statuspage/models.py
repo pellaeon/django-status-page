@@ -44,7 +44,7 @@ class Monitor(models.Model):
             (MAINTAINING, 'Maintaining'),
             )
     name = models.CharField(max_length=255, default='Unnamed monitor')
-    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=UP)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=UP) # manual_status
     incidents = models.ManyToManyField(Incident, blank=True)
 
     def __str__(self):
