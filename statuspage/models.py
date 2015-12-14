@@ -77,4 +77,4 @@ class Service(models.Model):
         return Monitor.UP
 
     def __unicode__(self):
-        return "%u - %s" % (self.name, self.status)
+        return "%s - %s" % (self.name, self.status)
