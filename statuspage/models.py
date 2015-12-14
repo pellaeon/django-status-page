@@ -47,7 +47,7 @@ class Monitor(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=UP) # manual_status
     incidents = models.ManyToManyField(Incident, blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return "%s - %s" % (self.service_set.all()[0].name if self.service_set.all() else "", self.name)
 
 class Host(models.Model):
@@ -55,7 +55,7 @@ class Host(models.Model):
     ip = models.GenericIPAddressField(blank=True, null=True)
     monitors = models.ManyToManyField(Monitor, blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.fqdn
 
 class Service(models.Model):
@@ -76,5 +76,5 @@ class Service(models.Model):
                 return Monitor.MAINTAINING
         return Monitor.UP
 
-    def __str__(self):
-        return "%s - %s" % (self.name, self.status)
+    def __unicode__(self):
+        return "%u - %s" % (self.name, self.status)
