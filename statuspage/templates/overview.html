@@ -34,7 +34,7 @@
 				<span class="ui right floated"><i class="icon circle yellow"></i>維護中</span>
 			{% endif %}
 			</div>
-			{% for m in s.monitors.all %}
+			{% for m in s.monitor_set.all %}
 			<div class="ui secondary segment clearing hidden transition">
 				<span class="ui left floated"><i class="icon list layout"></i>{{ m.name }}</span>
 				{% if m.status == 'U' %}

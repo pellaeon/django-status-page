@@ -53,7 +53,7 @@ class Monitor(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=UP) # manual_status
 
     def __unicode__(self):
-        return "%s - %s" % (self.service_set.all()[0].name if self.service_set.all() else "", self.name)
+        return "%s - %s" % (self.service.name if self.service else "", self.name)
 
 class Incident(models.Model):
     monitor = models.ForeignKey(Monitor, default=1) #FIXME default=1 might not exist
