@@ -33,7 +33,7 @@ class Service(models.Model):
                 return Monitor.MAINTAINING
         return Monitor.UP
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s - %s" % (self.name, self.status)
 
 class Monitor(models.Model):
@@ -52,7 +52,7 @@ class Monitor(models.Model):
     name = models.CharField(max_length=255, default='Unnamed monitor')
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=UP) # manual_status
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s - %s" % (self.service.name if self.service else "", self.name)
 
 class Incident(models.Model):
@@ -77,5 +77,5 @@ class Host(models.Model):
     service = models.ForeignKey(Service, default=1) # FIXME default=1 might not exist
     monitors = models.ManyToManyField(Monitor, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s (%s)" % (self.fqdn, self.ip if self.ip else "")
